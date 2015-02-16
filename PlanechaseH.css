@@ -1,0 +1,101 @@
+html, body {
+	height: 100%;
+	width: 100%;
+	margin: auto;
+	background:url(halftone2.png);
+	font-family: 'Open Sans', Helvetica, sans-serif;
+	font-weight:lighter;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+}
+div {
+	margin:auto;
+	width:1038px;
+}
+#Card {
+	float:left;
+	height:600px;
+}
+#CardName {
+	margin-bottom:10px;
+	margin-top:10px;
+	margin-right:30px;
+	width:860px;
+	float:right;
+}
+#PCDv2 {
+	margin-left:10px;
+	margin-right:10px;
+}
+#ButtonDiv {
+	display:block;
+	text-align:center;
+	width:108px;
+	margin-top:60px;
+	margin-right:30px;
+	margin-left:10px;
+	float:left;
+}
+.Buttons {
+	width:75px;
+	height:75px;
+}
+#Prev, #Shuffle, #Menu, #Next {
+	float:left;
+	margin-top:15px;
+	margin-bottom:15px;
+	margin-left:26px;
+	margin-right:26px;
+	width:75px;
+	height:75px;
+}
+#Next:hover .Circle, #Prev:hover .Circle, #Shuffle:hover .Circle, #Menu:hover .Circle{
+	fill-opacity:0;
+}
+#Next:active .Circle, #Prev:active .Circle, #Shuffle:active .Circle, #Menu:active .Circle{
+	fill-opacity:1;
+}
+#CheckBox, #CheckBoxSelected{
+	border:solid;
+	border-width:1px;
+	border-radius:25px;
+	border-color:#636466;
+	height:50px;
+	width:480px;
+	background-color:#ffffff;
+	font-family: 'Open Sans', Helvetica, sans-serif;
+	font-weight:lighter;
+	font-size:24px;
+	line-height:50px;
+	margin-bottom:10px;
+	color:#636466;
+}
+#CheckBox {
+	opacity:1;
+	box-shadow: 0px 2px 2px #979797;
+}
+#CheckBoxSelected{
+	opacity:.25;
+	box-shadow: 0px 2px 2px #979797;
+}
+#CheckBox:hover {
+	background-color:transparent;
+}
+#CheckBoxSelected:hover {
+	background-color:#FFFFFF;
+	opacity:.5;
+}
+.Circle {
+	fill:#FFFFFF;
+	stroke:#636466;
+}
+.Content {
+	fill:#636466;
+}
+#Footer {
+	width:860px;
+	margin-top:10px;
+	margin-bottom:10px;
+	margin-right:30px;
+	font-size:9px;
+}
