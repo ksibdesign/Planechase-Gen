@@ -1,0 +1,210 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Planechase Deck Generator</title>
+<link id="Stylesheet" href="PlanechaseH.css" rel="stylesheet" type="text/css">
+<script src="decks.js" type="text/javascript"></script>
+<script src="Planechase.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300' rel='stylesheet' type='text/css'>
+<script type="text/javascript">
+var temp = 0;
+var count = 0;
+var diceType = "Planechase";
+var diceFaces = new Array();
+diceFaces[0] = "Chaos";
+diceFaces[1] = "Planeswalk";
+diceFaces[2] = "Blank";
+diceFaces[3] = "Blank";
+diceFaces[4] = "Blank";
+diceFaces[5] = "Blank";
+var menuState = 0;
+
+var deckPlaceholder = new Array();
+var customDeck = new Array(85);
+var gameStarted = 0;
+var deckName = "Click the Planechase Die to Begin!";
+var deckCurrent = new Array();
+var cardPos = 0;
+var deck = 0;
+var curStyle = 0;
+
+$(document).ready(function(){
+	document.getElementById("PCDv2").src = "DieV2/PlanechaseDie_C_Side0.png";
+	temp++;
+	$('#PCDv2').click(gameChecker);
+	$('#Settings').hide(0);
+	$('#CustomDeckSettings').hide(0);
+	$('#Menu').click(settings);
+	deckCustomPlaceholder();
+});
+
+</script>
+</head>
+<body>
+<div id="div"><center>
+<div id="ButtonDiv"><center>
+<div id="Next">
+<svg class="Buttons" x="0px" y="0px" viewBox="0 0 72 72" enable-background="new 0 0 72 72" xml:space="preserve">
+<path class="Circle" stroke-miterlimit="10" d="M36,68,c17.7,0,32-14.3,32-32S53.7,4,36,4S4,18.3,4,36S18.3,68,36,68z"/>
+<g class="Content">
+	<polygon points="33,50 47,36 33,22 29,26 39,36 29,46 "/>
+</g>
+</svg>
+</div>
+<div id="Prev">
+<svg class="Buttons" x="0px" y="0px" viewBox="0 0 72 72" enable-background="new 0 0 72 72">
+<path class="Circle" d="M36,4C18.3,4,4,18.3,4,36,s14.3,32,32,32s32-14.3,32-32S53.7,4,36,4z"/>
+<g class="Content">
+	<polygon fill="#636466" points="39,22 25,36 39,50 43,46 33,36 43,26 "/>
+</g>
+</svg>
+</div>
+
+
+<img id="PCDv2" src="" width="108" height="108">
+
+
+<div id="Menu">
+<svg class="Buttons" x="0px" y="0px" viewBox="0 0 72 72" enable-background="new 0 0 72 72" xml:space="preserve">
+<path class="Circle" stroke-miterlimit="10" d="M36,4C18.3,4,4,18.3,4,36,s14.3,32,32,32c17.7,0,32-14.3,32-32S53.7,4,36,4z"/>
+<g class="Content">
+	<circle fill="#636466" cx="24" cy="44" r="2"/>
+	<circle fill="#636466" cx="24" cy="36" r="2"/>
+	<circle fill="#636466" cx="24" cy="28" r="2"/>
+	<path fill="#636466" d="M50,27c0-0.6-0.4-1-1-1H31c-0.6,0-1,0.4-1,1v2c0,0.6,0.4,1,1,1h18,c0.6,0,1-0.4,1-1V27z"/>
+	<path fill="#636466" d="M50,35c0-0.6-0.4-1-1-1H31c-0.6,0-1,0.4-1,1v2c0,0.6,0.4,1,1,1h18,c0.6,0,1-0.4,1-1V35z"/>
+	<path fill="#636466" d="M50,43c0-0.6-0.4-1-1-1H31c-0.6,0-1,0.4-1,1v2c0,0.6,0.4,1,1,1h18,c0.6,0,1-0.4,1-1V43z"/>
+</g>
+</svg>
+</div>
+<div id="Shuffle">
+<svg class="Buttons" x="0px" y="0px" viewBox="0 0 72 72" enable-background="new 0 0 72 72" xml:space="preserve">
+<path class="Circle" stroke-miterlimit="10" d="M36,4C18.3,4,4,18.3,4,36s14.3,32,32,32c17.7,0,32-14.3,32-32,S53.7,4,36,4z"/>
+<g class="Content">
+	<polygon fill="#636466" points="36,48.4 22.9,40.2 20,42 36,52 52,42 49.1,40.2 	"/>
+	<polygon fill="#636466" points="36,42.4 22.9,34.2 20,36 36,46 52,36.1 49,34.2 	"/>
+	<polygon fill="#636466" points="20,30 36,40 52,30 36,20 	"/>
+</g>
+</svg>
+</div>
+</div> <!-- ButtonDiv -->
+
+
+<div id="CardName">Click the Planechase die to Begin!</div>
+<img id="Card" src="Cards/PlanechaseBack.png">
+
+
+<div id="Settings">
+
+<div id="CheckBox" onClick="deckSetting(0)">All Cards</div>
+<div id="CheckBoxTitle">Below are the <br>Planechase 2009 Prebuilt Decks</div>
+<div id="CheckBoxTitle">Below are the <br>Planechase 2012 Prebuilt Decks</div>
+<div id="CheckBox" onClick="deckSetting(1)">Elemental Thunder</div>
+<div id="CheckBox" onClick="deckSetting(5)">Chaos Reigns</div>
+<div id="CheckBox" onClick="deckSetting(2)">Metallic Dreams</div>
+<div id="CheckBox" onClick="deckSetting(6)">Night of the Ninja</div>
+<div id="CheckBox" onClick="deckSetting(3)">Strike Force</div>
+<div id="CheckBox" onClick="deckSetting(7)">Primordial Hunger</div>
+<div id="CheckBox" onClick="deckSetting(4)">Zombie Empire</div>
+<div id="CheckBox" onClick="deckSetting(8)">Savage Auras</div>
+<div id="CheckBox" onClick="deckCustom()">Custom Deck</div>
+</div>
+
+<div id="CustomDeckSettings"><center>
+<div id="CheckBox" onClick="checkBoxSelect(this, 0)">Academy at Tolaria West</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 1)">Agyrem</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 2)">Akoum</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 3)">Aretopolis</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 4)">Astral Arena</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 5)">Bant</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 6)">Bloodhill Bastion</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 7)">Celestine Reef</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 8)">Chaotic Æther</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 9)">Cliffside Market</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 10)">Edge of Malacol</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 11)">Eloren Wilds</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 12)">Feeding Grounds</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 13)">Fields of Summer</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 14)">Furnace Layer</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 15)">Gavony</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 16)">Glen Elendra</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 17)">Glimmervoid Basin</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 18)">Goldmeadow</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 19)">Grand Ossuary</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 20)">Grixis</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 21)">Grove of the Dreampods</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 22)">Hedron Fields of Agadeem</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 23)">Horizon Boughs</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 24)">Immersturm</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 25)">Interplanar Tunnel</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 26)">Isle of Vesuva</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 27)">Izzet Steam Maze</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 28)">Jund</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 29)">Kessig</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 30)">Kharasha Foothills</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 31)">Kilnspire District</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 32)">Krosa</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 33)">Lair of the Ashen Idol</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 34)">Lethe Lake</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 35)">Llanowar</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 36)">Minamo</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 37)">Mirrored Depths</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 38)">Morphic Tide</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 39)">Mount Keralia</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 40)">Murasa</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 41)">Mutual Epiphany</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 42)">Naar Isle</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 43)">Naya</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 44)">Nephalia</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 45)">Norn’s Dominion</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 46)">Onakke Catacomb</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 47)">Orochi Colony</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 48)">Orzhova</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 49)">Otaria</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 50)">Panopticon</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 51)">Planewide Disaster</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 52)">Pools of Becoming</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 53)">Prahv</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 54)">Quicksilver Sea</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 55)">Raven's Run</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 56)">Reality Shaping</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 57)">Sanctum of Serra</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 58)">Sea of Sand</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 59)">Selesnya Loft Gardens</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 60)">Shiv</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 61)">Skybreen</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 62)">Sokenzan</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 63)">Spatial Merging</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 64)">Stairs to Infinity</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 65)">Stensia</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 66)">Stronghold Furnace</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 67)">Takenuma</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 68)">Talon Gates</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 69)">Tazeem</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 70)">Tember City</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 71)">The Æther Flues</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 72)">The Dark Barony</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 73)">The Eon Fog</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 74)">The Fourth Sphere</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 75)">The Great Forest</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 76)">The Hippodrome</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 77)">The Maelstrom</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 78)">The Zephyr Maze</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 79)">Time Distortion</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 80)">Trail of the Mage-Rings</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 81)">Truga Jungle</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 82)">Turri Island</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 83)">Undercity Reaches</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 84)">Velis Vel</div>
+<div id="CheckBox" onClick="checkBoxSelect(this, 85)">Windriddle Palaces</div><br><br>
+<div id="CheckBox" onClick="deckCustomComplete()">Create Deck</div>
+</div>
+
+<div id="Footer">Images are ™ & © Copyright 2015 Wizards of the Coast LLC<br><br>Click <a href="#" onClick="changeStylesheet()">here</a> to toggle between Desktop and tablet versions!</div>
+
+</div>
+</div>
+</body>
+</html>
