@@ -179,12 +179,10 @@ function deckCustomComplete() {
 	deckShuffle();
 	menuState = 0;
 }
+
+var isLandscape = true;
 function changeStylesheet() {
-	if (curStyle == 0){
-		$("link").attr("href","Planechase.css");
-		curStyle = 1;
-	} else {
-		$("link").attr("href","PlanechaseH.css");
-		curStyle = 0;
-	}
+	isLandscape = !isLandscape;
+	$('body').toggleClass('layout-landscape', isLandscape);
+	$('body').toggleClass('layout-portrait', !isLandscape);
 }

@@ -1,3 +1,9 @@
 @import "config";
 
-@import "planechase";
+.layout-landscape {
+    @import "planechaseLandscape";
+}
+
+.layout-portrait {
+    @import "planechasePortrait";
+}
