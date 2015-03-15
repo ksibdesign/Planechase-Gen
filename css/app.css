@@ -1,0 +1,185 @@
+/* line 1, ../sass/_planechase.scss */
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  background: url(halftone2.png);
+  font-family: 'Open Sans', Helvetica, sans-serif;
+  font-weight: lighter;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+
+/* line 11, ../sass/_planechase.scss */
+div {
+  margin: auto;
+  height: 90%;
+  width: 90%;
+}
+
+/* line 16, ../sass/_planechase.scss */
+#Card {
+  max-height: 600px;
+  max-width: 100%;
+  min-width: 550px;
+}
+
+/* line 21, ../sass/_planechase.scss */
+#CardName {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  width: 550px;
+}
+
+/* line 26, ../sass/_planechase.scss */
+#PCDv2 {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/* line 30, ../sass/_planechase.scss */
+#ButtonDiv {
+  width: 550px;
+  margin-top: 10px;
+}
+
+/* line 34, ../sass/_planechase.scss */
+.Buttons {
+  width: 75px;
+  height: 75px;
+}
+
+/* line 38, ../sass/_planechase.scss */
+#Prev, #Shuffle, #Menu, #Next {
+  float: left;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 75px;
+  height: 75px;
+}
+
+/* line 47, ../sass/_planechase.scss */
+#Prev, #Shuffle {
+  float: left;
+}
+
+/* line 50, ../sass/_planechase.scss */
+#Next, #Menu {
+  float: right;
+}
+
+/* line 53, ../sass/_planechase.scss */
+#Next:hover .Circle, #Prev:hover .Circle, #Shuffle:hover .Circle, #Menu:hover .Circle {
+  fill-opacity: 0;
+}
+
+/* line 56, ../sass/_planechase.scss */
+#Next:active .Circle, #Prev:active .Circle, #Shuffle:active .Circle, #Menu:active .Circle {
+  fill-opacity: 1;
+}
+
+/* line 59, ../sass/_planechase.scss */
+#CheckBox, #CheckBoxSelected {
+  border: solid;
+  border-width: 1px;
+  border-radius: 25px;
+  border-color: #636466;
+  height: 50px;
+  width: 400px;
+  background-color: #ffffff;
+  font-family: 'Open Sans', Helvetica, sans-serif;
+  font-weight: lighter;
+  font-size: 24px;
+  line-height: 50px;
+  margin-bottom: 10px;
+  margin-right: 14px;
+  margin-left: 14px;
+  color: #636466;
+  float: left;
+}
+
+/* line 77, ../sass/_planechase.scss */
+#CheckBoxTitle {
+  height: 60px;
+  width: 400px;
+  font-family: 'Open Sans', Helvetica, sans-serif;
+  font-weight: lighter;
+  font-size: 24px;
+  line-height: 20px;
+  margin-top: 10px;
+  margin-right: 14px;
+  margin-left: 14px;
+  color: #8D8D8D;
+  float: left;
+  font-size: 16px;
+}
+
+/* line 91, ../sass/_planechase.scss */
+#CustomDeckSettings #CheckBox:last-child {
+  margin-left: 233px;
+  margin-right: 233px;
+  margin-top: 44px;
+}
+
+/* line 96, ../sass/_planechase.scss */
+#Settings #CheckBox:last-child {
+  margin-left: 233px;
+  margin-right: 233px;
+  margin-top: 44px;
+}
+
+/* line 101, ../sass/_planechase.scss */
+#Settings #CheckBox:first-child {
+  margin-left: 233px;
+  margin-bottom: 44px;
+  margin-right: 233px;
+}
+
+/* line 106, ../sass/_planechase.scss */
+#CheckBox {
+  opacity: 1;
+  box-shadow: 0px 2px 2px #979797;
+}
+
+/* line 110, ../sass/_planechase.scss */
+#CheckBoxSelected {
+  opacity: .25;
+  box-shadow: 0px 2px 2px #979797;
+}
+
+/* line 114, ../sass/_planechase.scss */
+#CheckBox:hover {
+  background-color: transparent;
+}
+
+/* line 117, ../sass/_planechase.scss */
+#CheckBoxSelected:hover {
+  background-color: #FFFFFF;
+  opacity: .5;
+}
+
+/* line 121, ../sass/_planechase.scss */
+.Circle {
+  fill: #FFFFFF;
+  stroke: #636466;
+}
+
+/* line 125, ../sass/_planechase.scss */
+.Content {
+  fill: #636466;
+}
+
+/* line 128, ../sass/_planechase.scss */
+#Footer {
+  width: 550px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 9px;
+}
+
+/* line 134, ../sass/_planechase.scss */
+#Settings, #CustomDeckSettings {
+  width: 860px;
+}
